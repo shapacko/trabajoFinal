@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Socios</title>
+</head>
+<body>
+    <h1>Socios</h1>
+    {% if lista_socios %}
+        <table>
+        {% for socio in lista_socios %}
+            <tr>
+                <th>{{ socio.id }}</th>
+                <th>{{ socio.nombre }}</th>
+                <th><a href="/biblio/socio/{{ socio.id }}/">Ver</a></th>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>No hay socios.</p>
+    {% endif %}
+</body>
+</html>
