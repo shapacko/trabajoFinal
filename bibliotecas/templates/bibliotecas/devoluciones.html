@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Devoluciones</title>
+</head>
+<body>
+    <h1>Devoluciones</h1>
+    <form action="/biblio/devoluciones/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>

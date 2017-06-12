@@ -10,12 +10,12 @@ class Libro(models.Model):
         return self.titulo + " - " + self.autor
 
 class Copia(models.Model):
-    nro_inventario = models.AutoField(primary_key=True, default=1)
+    nro_inventario = models.AutoField(primary_key=True)
     libro = models.ForeignKey(Libro, on_delete=models.CASCADE)
     estado = models.CharField(max_length=20)
 
     def __str__(self):
-        return "Copia " + str(self.nro_inventario)
+        return "Copia " + str(self.nro_inventario) + " de " + str(self.libro)
 
 class Socio(models.Model):
     id = models.CharField(max_length=8, primary_key=True)

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Libros</title>
+</head>
+<body>
+    <h1>Libros</h1>
+    {% if lista_libros %}
+        <table>
+        {% for libro in lista_libros %}
+            <tr>
+                <th>{{ libro.isbn }}</th>
+                <th>{{ libro.titulo }}</th>
+                <th><a href="/biblio/libro/{{ libro.isbn }}/">Ver</a></th>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>No hay libros.</p>
+    {% endif %}
+</body>
+</html>
