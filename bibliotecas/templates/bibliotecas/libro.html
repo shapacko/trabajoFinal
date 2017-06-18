@@ -6,7 +6,40 @@
 </head>
 <body>
     {% if libro %}
-        <h1>Libro {{ libro.titulo }}</h1>
+        <h1>Datos del libro</h1>
+        <table>
+          <tr>
+            <th>ISBN</th>
+            <th>{{ libro.isbn }}</th>
+          </tr>
+            <tr>
+              <th>Título</th>
+              <th>{{ libro.titulo }}</th>
+            </tr>
+            <tr>
+              <th>Autor</th>
+              <th>{{ libro.autor }}</th>
+            </tr>
+            <tr>
+              <th>Fecha de ingreso</th>
+              <th>{{ libro.fecha_ingreso }}</th>
+            </tr>
+        </table>
+        <br>
+
+        <h3>Copias</h3>
+        <table>
+          <tr>
+            <th>Nro inventario</th>
+            <th>Estado</th>
+          </tr>
+          {% for copia in libro.copia_set.all %}
+          <tr>
+            <th>{{ copia.nro_inventario }}</th>
+            <th>{{ copia.estado }}</th>
+          </tr>
+        {% endfor %}
+        </table>
     {% endif %}
 </body>
 </html>

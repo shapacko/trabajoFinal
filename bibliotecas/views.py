@@ -1,7 +1,7 @@
 import datetime
 
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from bibliotecas.forms import PrestamoForm, DevolucionForm
 from bibliotecas.models import Socio, Libro, Prestamo, Copia
 
@@ -51,9 +51,11 @@ def devoluciones(request):
                 if datetime.date.today() > prestamo.fecha_fin:
                     socio.estado = "moroso"
                     socio.save()
-                return HttpResponse("Devolución ingresada.")
+                prestamo.estado="terminado"
+                prestamo.save()
+                return HttpResponse("Copia devuelta con exito.")
             else:
-                return HttpResponse("Préstamo inexistente!")
+                raise Http404("Préstamo inexistente.")
     else:
         form = DevolucionForm()
 
@@ -69,8 +71,18 @@ def socio(request, socio_id):
     context = {'socio': socio}
     return render(request, "bibliotecas/socio.html", context)
 
+def copias(request):
+    lista_copias = Copia.objects.all()
+    context = {'lista_copias': lista_copias}
+    return render(request, "bibliotecas/copias.html", context)
+
 def copia(request, nro_inventario):
-    return HttpResponse("Info de la copia " + nro_inventario)
+    copia = Copia.objects.get(nro_inventario=nro_inventario)
+    context = {'copia': copia}
+    prestamo = Prestamo.objects.filter(copia=copia.nro_inventario, estado="pendiente")
+    if prestamo:
+        context.update({'prestamo': prestamo})
+    return render(request, "bibliotecas/copia.html", context)
 
 def libros(request):
     lista_libros = Libro.objects.all()
@@ -83,10 +95,12 @@ def libro(request, isbn):
     return render(request, "bibliotecas/libro.html", context)
 
 def morosos(request):
-    return HttpResponse("Morosos")
+    lista_morosos = Socio.objects.filter(estado="moroso")
+    context = {'lista_morosos' : lista_morosos}
+    return render(request, "bibliotecas/morosos.html", context)
 
 def prestamo_fecha(request, fecha):
     return HttpResponse("Lista de prestamos")
 
 def moroso_fecha(request, fecha):
-    return HttpResponse("Lista de morosos")
+    return HttpResponse("Lista de futuros morosos")

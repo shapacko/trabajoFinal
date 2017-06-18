@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Copias</title>
+</head>
+<body>
+    <h1>Copias</h1>
+    {% if lista_copias %}
+    <table>
+      <tr>
+        <th>Nro inventario</th>
+        <th>Libro</th>
+      </tr>
+        {% for copia in lista_copias %}
+            <tr>
+                <th>{{ copia.nro_inventario }}</th>
+                <th>{{ copia.libro }}</th>
+                <th><a href="/biblio/copia/{{ copia.nro_inventario }}/">Ver</a></th>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>No hay copias.</p>
+    {% endif %}
+</body>
+</html>

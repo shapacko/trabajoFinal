@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Morosos</title>
+</head>
+<body>
+    <h1>Morosos</h1>
+    {% if lista_morosos %}
+        <table>
+          <tr>
+            <th>Socio</th>
+          </tr>
+        {% for socio in lista_morosos %}
+            <tr>
+                <th>{{ socio }}</th>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>No hay morosos.</p>
+    {% endif %}
+</body>
+</html>

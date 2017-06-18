@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Copia</title>
+</head>
+<body>
+    {% if copia %}
+    <h1>Datos de la copia</h1>
+    <table align="left">
+      <tr>
+        <th>Nro inventario</th>
+        <th>{{ copia.nro_inventario }}</th>
+      </tr>
+        <tr>
+          <th>Libro</th>
+          <th>{{ copia.libro }}</th>
+        </tr>
+        <tr>
+          <th>Estado</th>
+          <th>{{ copia.estado }}</th>
+        </tr>
+        {% if copia.estado == "prestado" %}
+          <tr>
+            <th>Prestado a</th>
+            <th>{{ prestamo.socio }}</th>
+          </tr>
+        {% endif %}
+    </table>
+    {% endif %}
+</body>
+</html>

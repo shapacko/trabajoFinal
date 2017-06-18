@@ -7,7 +7,11 @@
 <body>
     <h1>Socios</h1>
     {% if lista_socios %}
-        <table>
+        <table align="left">
+          <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+          </tr>
         {% for socio in lista_socios %}
             <tr>
                 <th>{{ socio.id }}</th>

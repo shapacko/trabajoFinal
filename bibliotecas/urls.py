@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
 
-    url(r'^prestamos/$', views.prestamos, name='prestamos'),
+    url(r'^prestamo/$', views.prestamos, name='prestamo'),
     url(r'^devoluciones/$', views.devoluciones, name='devoluciones'),
 
 
@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^libros/$', views.libros, name='libros'),
     url(r'^libro/(?P<isbn>[0-9]+)/$', views.libro, name='libro'),
 
+    url(r'^copias/$', views.copias, name='copias'),
     url(r'^copia/(?P<nro_inventario>[0-9]+)/$', views.copia, name='copia'),
 
     url(r'^morosos/$', views.morosos, name='morosos'),

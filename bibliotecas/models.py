@@ -4,7 +4,7 @@ class Libro(models.Model):
     isbn = models.CharField(max_length=13, primary_key=True)
     titulo = models.CharField(max_length=200)
     autor = models.CharField(max_length=200)
-    fecha_ingreso =models.DateField
+    fecha_ingreso =models.DateField()
 
     def __str__(self):
         return self.titulo + " - " + self.autor
@@ -21,7 +21,7 @@ class Socio(models.Model):
     id = models.CharField(max_length=8, primary_key=True)
     nombre = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
-    fecha_nacimiento = models.DateField
+    fecha_nacimiento = models.DateField()
     estado = models.CharField(max_length=20)
 
     def __str__(self):
@@ -30,11 +30,9 @@ class Socio(models.Model):
 class Prestamo(models.Model):
     copia = models.ForeignKey(Copia)
     socio = models.ForeignKey(Socio)
-    fecha_comienzo = models.DateField
-    fecha_fin = models.DateField
+    fecha_comienzo = models.DateField()
+    fecha_fin = models.DateField()
     estado = models.CharField(max_length=20)
 
     def __str__(self):
         return "Préstamo de " + str(self.copia) + " a " + str(self.socio)
-
-#Devolución es parte del modelo??
