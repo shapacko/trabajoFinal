@@ -6,6 +6,8 @@
 </head>
 <body>
     <h1>Devoluciones</h1>
+    <i>Ingrese socio y el identificador de la copia a devolver.</i>
+    <br>
     <form action="/biblio/devoluciones/" method="post">
         {% csrf_token %}
         {{ form }}

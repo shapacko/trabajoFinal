@@ -6,6 +6,8 @@
 </head>
 <body>
     <h1>Prestamos</h1>
+    <i>Ingrese socio y el isbn que quiere prestar.</i>
+    <br>
     <form action="/biblio/prestamos/" method="post">
         {% csrf_token %}
         {{ form }}

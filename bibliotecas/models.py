@@ -35,6 +35,6 @@ class Prestamo(models.Model):
     estado = models.CharField(max_length=20)
 
     def __str__(self):
-        return "Préstamo " + self.id + " a " + self.socio
+        return "Préstamo de " + str(self.copia) + " a " + str(self.socio)
 
 #Devolución es parte del modelo??

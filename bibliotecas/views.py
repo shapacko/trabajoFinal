@@ -3,7 +3,7 @@ import datetime
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from bibliotecas.forms import PrestamoForm, DevolucionForm
-from bibliotecas.models import Socio, Libro, Prestamo
+from bibliotecas.models import Socio, Libro, Prestamo, Copia
 
 
 def index(request):
@@ -26,7 +26,7 @@ def prestamos(request):
                     prestamo = Prestamo()
                     prestamo.socio = socio
                     prestamo.copia = copia
-                    prestamo.fecha_comienzo = datetime.date()
+                    prestamo.fecha_comienzo = datetime.date.today()
                     prestamo.fecha_fin = prestamo.fecha_comienzo + datetime.timedelta(days=7)
                     prestamo.estado = "pendiente"
                     prestamo.save()
@@ -43,6 +43,21 @@ def devoluciones(request):
         form = DevolucionForm(request.POST)
         if form.is_valid():
             socio = Socio.objects.get(id=form.cleaned_data['socio'])
+            copia = Copia.objects.get(nro_inventario=form.cleaned_data['nro_inventario'])
+            prestamo = Prestamo.objects.get(socio=form.cleaned_data['socio'], copia=form.cleaned_data['nro_inventario'])
+            if prestamo:
+                copia.estado = "disponible"
+                copia.save()
+                if datetime.date.today() > prestamo.fecha_fin:
+                    socio.estado = "moroso"
+                    socio.save()
+                return HttpResponse("Devolución ingresada.")
+            else:
+                return HttpResponse("Préstamo inexistente!")
+    else:
+        form = DevolucionForm()
+
+    return render(request, 'bibliotecas/devoluciones.html', {'form': form})
 
 def socios(request):
     lista_socios = Socio.objects.all()
