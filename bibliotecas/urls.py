@@ -20,5 +20,5 @@ urlpatterns = [
 
     url(r'^morosos/$', views.morosos, name='morosos'),
     url(r'^prestamo_fecha/$', views.prestamo_fecha, name='prestamo_fecha'),
-    url(r'^moroso_fecha/(?P<fecha>[0-9]+)/$', views.moroso_fecha, name='moroso_fecha'),
+    url(r'^morosos_fecha/(?P<fecha>[0-9]+)/$', views.moroso_fecha, name='moroso_fecha'),
 ]
