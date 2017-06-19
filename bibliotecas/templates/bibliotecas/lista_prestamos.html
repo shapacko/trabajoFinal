@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Prestamos</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "bibliotecas/estilos" %}.css">
+</head>
+<body>
+    <h1>Listado de prestamos</h1>
+    <i>Ingrese una fecha de consulta.</i>
+    <br>
+    <form action="/biblio/prestamo_fecha/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="submit">
+    </form>
+    <br>
+    {% if lista_prestamos %}
+        <table>
+          <tr>
+            <th>Copia</th>
+            <th>Socio</th>
+            <th>Fecha pautada</th>
+          </tr>
+        {% for prestamo in lista_prestamos %}
+            <tr>
+                <th>{{ prestamo.copia }}</th>
+                <th>{{ prestamo.socio }}</th>
+                <th>{{ prestamo.fecha_fin }}</th>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>No hay prestamos.</p>
+    {% endif %}
+</body>
+</html>

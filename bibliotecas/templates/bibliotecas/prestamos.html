@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Biblioteca - Prestamos</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "bibliotecas/estilos" %}.css">
 </head>
 <body>
-    <h1>Prestamos</h1>
+    <h1>Nuevo prestamo</h1>
     <i>Ingrese socio y el isbn que quiere prestar.</i>
     <br>
     <form action="/biblio/prestamos/" method="post">

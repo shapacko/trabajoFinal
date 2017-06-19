@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Biblioteca</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "bibliotecas/estilos" %}.css">
 </head>
 <body>
     <h1>Biblioteca</h1>
@@ -14,7 +16,7 @@
         <li><a href="/biblio/copias/">Copias</a></li>
         <li><a href="/biblio/morosos/">Morosos</a></li>
 
-        <li><a href="/biblio/morosos/">Lista de prestamos</a></li>
+        <li><a href="/biblio/prestamo_fecha/">Lista de prestamos</a></li>
         <li><a href="/biblio/morosos/">Lista de futuros morosos</a></li>
     </ul>
 

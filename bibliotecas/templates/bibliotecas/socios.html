@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Biblioteca - Socios</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "bibliotecas/estilos" %}.css">
 </head>
 <body>
     <h1>Socios</h1>
@@ -11,12 +13,13 @@
           <tr>
             <th>Id</th>
             <th>Nombre</th>
+            <th></th>
           </tr>
         {% for socio in lista_socios %}
             <tr>
                 <th>{{ socio.id }}</th>
                 <th>{{ socio.nombre }}</th>
-                <th><a href="/biblio/socio/{{ socio.id }}/">Ver</a></th>
+                <th><a href="/biblio/socio/{{ socio.id }}/"><img src="{% static "bibliotecas/search-icon.png" %}" alt="Ver"/></a></th>
             </tr>
         {% endfor %}
         </table>

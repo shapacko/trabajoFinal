@@ -1,0 +1,18 @@
+h1, h3, i ,li, label, input, p{
+    font-family: arial, sans-serif;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

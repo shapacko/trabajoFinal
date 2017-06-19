@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
 
-    url(r'^prestamo/$', views.prestamos, name='prestamo'),
+    url(r'^prestamo/$', views.prestamo, name='prestamo'),
     url(r'^devoluciones/$', views.devoluciones, name='devoluciones'),
 
 
@@ -19,6 +19,6 @@ urlpatterns = [
     url(r'^copia/(?P<nro_inventario>[0-9]+)/$', views.copia, name='copia'),
 
     url(r'^morosos/$', views.morosos, name='morosos'),
-    url(r'^prestamo_fecha/(?P<fecha>[0-9]+)/$', views.prestamo_fecha, name='prestamo_fecha'),
+    url(r'^prestamo_fecha/$', views.prestamo_fecha, name='prestamo_fecha'),
     url(r'^moroso_fecha/(?P<fecha>[0-9]+)/$', views.moroso_fecha, name='moroso_fecha'),
 ]
