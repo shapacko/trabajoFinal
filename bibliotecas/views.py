@@ -2,7 +2,7 @@ import datetime
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from bibliotecas.forms import PrestamoForm, DevolucionForm, ListaPrestamosForm
+from bibliotecas.forms import PrestamoForm, DevolucionForm, SoloFechaForm
 from bibliotecas.models import Socio, Libro, Prestamo, Copia
 
 
@@ -101,15 +101,24 @@ def morosos(request):
 
 def prestamo_fecha(request):
     if request.method == 'POST':
-        form = ListaPrestamosForm(request.POST)
+        form = SoloFechaForm(request.POST)
         if form.is_valid():
             lista_prestamos = Prestamo.objects.filter(fecha_comienzo=form.cleaned_data['fecha'])
             context = {'form': form, 'lista_prestamos': lista_prestamos}
     else:
-        form = ListaPrestamosForm()
+        form = SoloFechaForm()
         context = {'form': form}
 
     return render(request, 'bibliotecas/lista_prestamos.html', context)
 
-def moroso_fecha(request, fecha):
-    return HttpResponse("Lista de futuros morosos")
+def morosos_fecha(request):
+    if request.method == 'POST':
+        form = SoloFechaForm(request.POST)
+        if form.is_valid():
+            lista_morosos = Prestamo.objects.filter(fecha_fin=form.cleaned_data['fecha'], estado="pendiente")
+            context = {'form': form, 'lista_morosos': lista_morosos}
+    else:
+        form = SoloFechaForm()
+        context = {'form': form}
+
+    return render(request, 'bibliotecas/lista_morosos.html', context)

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Futuros morosos</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "bibliotecas/estilos" %}.css">
+</head>
+<body>
+    <h1>Listado de futuros morosos</h1>
+    <i>Ingrese una fecha de consulta.</i>
+    <br>
+    <form action="/biblio/morosos_fecha/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="submit">
+    </form>
+    <br>
+    {% if lista_morosos %}
+        <table>
+          <tr>
+            <th>Copia</th>
+            <th>Socio</th>
+            <th>Fecha pautada</th>
+          </tr>
+        {% for socio in lista_morosos %}
+            <tr>
+                <th>{{ prestamo.copia }}</th>
+                <th>{{ prestamo.socio }}</th>
+                <th>{{ prestamo.fecha_fin }}</th>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>No hay futuros morosos.</p>
+    {% endif %}
+</body>
+</html>
